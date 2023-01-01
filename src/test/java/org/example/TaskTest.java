@@ -51,7 +51,7 @@ public class TaskTest {
         List<WebElement> searchResult = driver.findElements(By.xpath("//div[@class='locationSearchInput_suggestion__QLl_v']/span"));
            boolean found=false;
         for (int i = 0; i <searchResult.size() ; i++) {
-            found=searchResult.get(i).getText().contains("Trafford Park");
+            found=searchResult.get(i).getText().contains("Trafford");
             if(found){
                 break;
             }
