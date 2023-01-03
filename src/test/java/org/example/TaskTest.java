@@ -49,16 +49,16 @@ public class TaskTest {
         search.sendKeys("Trafford");
 
         List<WebElement> searchResult = driver.findElements(By.xpath("//div[@class='locationSearchInput_suggestion__QLl_v']/span"));
-           boolean found=false;
-        for (int i = 0; i <searchResult.size() ; i++) {
-            found=searchResult.get(i).getText().contains("Trafford");
-            if(found){
+        boolean found = false;
+        for (int i = 0; i < searchResult.size(); i++) {
+            found = searchResult.get(i).getText().contains("Trafford");
+            if (found) {
                 break;
             }
 
         }
-        assertEquals(true,found);
-       // assertTrue(searchResult.get(0).getText().contains("Manchester"));
+        assertEquals(true, found);
+        // assertTrue(searchResult.get(0).getText().contains("Manchester"));
     }
 
     // Add negative test scenario
@@ -74,18 +74,12 @@ public class TaskTest {
         assertEquals("Jobs – Apply for a care job at Cera", driver.getTitle());
 
         WebElement search = driver.findElement(By.className("location-search-input"));
-        search.sendKeys("Trafford");
 
-        List<WebElement> searchResult = driver.findElements(By.xpath("//div[@class='locationSearchInput_suggestion__QLl_v']/span"));
-        boolean found=false;
-        for (int i = 0; i <searchResult.size() ; i++) {
-            found=searchResult.get(i).getText().contains("Trafford Garden");
-            if(found){
-                break;
-            }
-        }
-        assertEquals(false,found);
+        search.sendKeys("%traf%£ford*");
+
+        WebElement warningMessage= driver.findElement(By.xpath("//span[.='Please enter a city, town or postcode']"));
+        assertTrue(warningMessage.isDisplayed());
 
     }
-    }
 
+}
